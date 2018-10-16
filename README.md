@@ -38,6 +38,10 @@ You can access Management Center on `http://<ip_address>:8080/hazelcast-mancente
 
 ![](./images/04%20-%20management%20center.png)
 
+Create a user and then you can check out the cluster:
+
+![](./images/05%20-%20cluster.png)
+
 ## Deleting the Chart
 When you're all done with you cluster, you can run this to delete it:
 
@@ -45,4 +49,4 @@ When you're all done with you cluster, you can run this to delete it:
 
 That gives:
 
-![](./images/05%20-%20helm%20delete.png)
+![](./images/06%20-%20helm%20delete.png)
