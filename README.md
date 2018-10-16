@@ -35,7 +35,7 @@ You can grab the Management Center IP by running:
 
 You can access Management Center on `http://<ip_address>:8080/hazelcast-mancenter`
 
-## DEleting the chart
+## Deleting the chart
 When you're all done with you cluster, you can run this to delete it:
 
     helm delete my-release
