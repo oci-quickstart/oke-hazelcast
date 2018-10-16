@@ -54,7 +54,7 @@ Leave that running and open a web browser to http://localhost:8080/hazelcast-man
 
 ![](./images/05%20-%20management%20center.png)
 
-## Deleting the chart
+## Deleting the Chart
 When you're all done with you cluster, you can run this to delete it:
 
     helm delete my-release
