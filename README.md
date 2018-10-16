@@ -27,7 +27,7 @@ To install the chart run:
 
 This prints out all sorts of helpful stuff about how to access the cluster:
 
-    ![](./images/01%20-%20helm%20install.png)
+![](./images/01%20-%20helm%20install.png)
 
 You can grab the Management Center IP by running:
 
