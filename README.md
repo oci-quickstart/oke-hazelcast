@@ -1,4 +1,4 @@
-# oke-hazelcast
+# oke-quickstart-hazelcast
 This is a walkthrough of setting the [Hazelcast Operator](https://github.com/hazelcast/charts) up on [Oracle Kubernetes Engine](https://cloud.oracle.com/containers/kubernetes-engine) (OKE).  It is developed jointly by Oracle and Hazelcast.
 
 ## Prerequisites
