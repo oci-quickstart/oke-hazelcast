@@ -1,4 +1,10 @@
 # oke-hazelcast
+
+This repo is an active colaboration between OCI and Hazelcast. The helm description
+below is being superceeded, but remains for the moment.
+
+
+
 This is a walkthrough of setting the [Hazelcast Operator](https://github.com/hazelcast/charts) up on [Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE)](https://cloud.oracle.com/containers/kubernetes-engine). It is developed jointly by Oracle and Hazelcast.
 
 ## Prerequisites
