@@ -10,7 +10,7 @@ resource "local_file" "kubeconfig" {
 
 provider "helm" {
   kubernetes {
-    config_path = "${local_file.kubeconfig.filename}"
+    config_path = "~/tfoke/generated/kubeconfig"
   }
 }
 
