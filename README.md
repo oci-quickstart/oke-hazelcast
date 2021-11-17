@@ -8,7 +8,11 @@ below is being superceeded, but remains for the moment.
 This is a walkthrough of setting the [Hazelcast Operator](https://github.com/hazelcast/charts) up on [Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE)](https://cloud.oracle.com/containers/kubernetes-engine). It is developed jointly by Oracle and Hazelcast.
 
 ## Prerequisites
-First you're going to need to setup an Oracle Cloud account, your environmental variables, an OKE cluster and your kubectl.  It sounds like a lot, but there's a nice walkthrough [here](https://github.com/oracle/oke-quickstart-prerequisites) that should help.
+First you're going to need to setup an Oracle Cloud account. The terraform in this directory will deploy create a VCN and OKE cluster. Clicking the deploy button below will direct you to the console
+
+[![Deploy to Oracle Cloud](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?region=home&zipUrl=https://github.com/oracle-quickstart/oke-hazelcast/archive/master.zip)
+
+If you want to deploy onto an existing OKE cluster you need to set your environmental variables and configure kubectl.  It sounds like a lot, but there's a nice walkthrough [here](https://github.com/oracle/oke-quickstart-prerequisites) that should help.
 
 ## Get the Helm Chart
 Great, you made it!
