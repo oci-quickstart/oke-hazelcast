@@ -3,14 +3,14 @@ resource "local_file" "kubeconfig" {
   #There is no 'depends_on' argument in TF for providers
   #If this is not added, TF will destroy not work because resources won't be terminanted in appropriate order
 
-  depends_on = [module.network, module.oke]
-  filename   = "~/tfoke/generated/kubeconfig"
+  depends_on = [module.oke]
+  filename   = "${path.module}/generated/lock"
 }
 
 
 provider "helm" {
   kubernetes {
-    config_path = "~/tfoke/generated/kubeconfig"
+    config_path = "${path.module}/generated/kubeconfig"
   }
 }
 
@@ -25,5 +25,5 @@ resource "helm_release" "my-release" {
     value = "LoadBalancer"
   }
 
-  depends_on = [module.network, module.oke]
+  depends_on = [module.oke]
 }
