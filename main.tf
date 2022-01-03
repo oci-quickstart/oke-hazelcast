@@ -1,7 +1,7 @@
 
 module "oke" {
   source  = "oracle-terraform-modules/oke/oci"
-  version = "4.0.1"
+  version = "4.0.4"
 
   compartment_id                        =   var.compartment_ocid
   tenancy_id                            =   var.tenancy_ocid
@@ -11,7 +11,8 @@ module "oke" {
   region                                =   var.region
   home_region                           =   lookup(data.oci_identity_regions.home-region.regions[0], "name")
   create_bastion_host                   =   "true"
-  create_operator                       =   "true"
+  create_operator                       =   "false"
+  control_plane_allowed_cidrs           =   ["0.0.0.0/0"]
   providers = {
     oci.home = oci.home
   }
