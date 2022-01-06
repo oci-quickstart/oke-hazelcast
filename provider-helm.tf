@@ -26,4 +26,17 @@ resource "helm_release" "my-release" {
   }
 
   depends_on = [module.oke]
+
+  provisioner "local-exec" {
+    command = "export KUBECONFIG=./generated/kubeconfig && kubectl get svc --namespace default my-release-hazelcast-mancenter > mancenter.txt"
+  }
+}
+
+data "local_file" "mancenter_info" {
+    filename = "${path.module}/mancenter.txt"
+    depends_on = [helm_release.my-release]
+}
+
+output "mancenter_info" {
+  value = data.local_file.mancenter_info.content
 }
