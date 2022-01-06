@@ -7,7 +7,7 @@ variable "compartment_ocid" {
   description = "Compartment where Compute and Marketplace subscription resources will be created"
 }
 
-variable "user_ocid" {
+variable "current_user_ocid" {
 }
 
 variable "region" {
