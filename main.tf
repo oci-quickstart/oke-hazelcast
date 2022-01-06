@@ -5,8 +5,8 @@ module "oke" {
 
   compartment_id                        =   var.compartment_ocid
   tenancy_id                            =   var.tenancy_ocid
-  ssh_private_key                       =   var.ssh_private_key
-  ssh_public_key                        =   var.ssh_public_key
+  ssh_private_key                       =   tls_private_key.public_private_key_pair.private_key_pem
+  ssh_public_key                        =   tls_private_key.public_private_key_pair.public_key_openssh
   label_prefix                          =   "hazelcast"
   region                                =   var.region
   home_region                           =   lookup(data.oci_identity_regions.home-region.regions[0], "name")
@@ -16,4 +16,8 @@ module "oke" {
   providers = {
     oci.home = oci.home
   }
+}
+
+resource "tls_private_key" "public_private_key_pair" {
+  algorithm = "RSA"
 }
