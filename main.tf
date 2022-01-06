@@ -12,7 +12,7 @@ module "oke" {
   home_region                           =   lookup(data.oci_identity_regions.home-region.regions[0], "name")
   create_bastion_host                   =   "true"
   create_operator                       =   "false"
-  control_plane_allowed_cidrs           =   ["0.0.0.0/0"]
+  control_plane_allowed_cidrs           =   concat(["0.0.0.0/0"], local.particular_region_all_cidrs_list)
   providers = {
     oci.home = oci.home
   }
