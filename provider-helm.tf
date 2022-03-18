@@ -1,17 +1,26 @@
-resource "local_file" "kubeconfig" {
-  #Adding this resource as a hack
-  #There is no 'depends_on' argument in TF for providers
-  #If this is not added, TF will destroy not work because resources won't be terminanted in appropriate order
 
-  depends_on = [module.oke]
-  filename   = "${path.module}/generated/lock"
+# Gets kubeconfig
+data "oci_containerengine_cluster_kube_config" "oke" {
+  cluster_id = module.oke.cluster_id
 }
-
 
 provider "helm" {
   kubernetes {
-    config_path = "${path.module}/generated/kubeconfig"
+    host                   = local.cluster_endpoint
+    cluster_ca_certificate = local.cluster_ca_certificate
+    exec {
+      api_version = "client.authentication.k8s.io/v1beta1"
+      args        = ["ce", "cluster", "generate-token", "--cluster-id", local.cluster_id, "--region", local.cluster_region]
+      command     = "oci"
+    }
   }
+}
+
+locals {
+  cluster_endpoint       = yamldecode(data.oci_containerengine_cluster_kube_config.oke.content)["clusters"][0]["cluster"]["server"]
+  cluster_ca_certificate = base64decode(yamldecode(data.oci_containerengine_cluster_kube_config.oke.content)["clusters"][0]["cluster"]["certificate-authority-data"])
+  cluster_id             = yamldecode(data.oci_containerengine_cluster_kube_config.oke.content)["users"][0]["user"]["exec"]["args"][4]
+  cluster_region         = yamldecode(data.oci_containerengine_cluster_kube_config.oke.content)["users"][0]["user"]["exec"]["args"][6]
 }
 
 resource "helm_release" "my-release" {
@@ -30,13 +39,4 @@ resource "helm_release" "my-release" {
   provisioner "local-exec" {
     command = "export KUBECONFIG=./generated/kubeconfig && kubectl get svc --namespace default my-release-hazelcast-mancenter > mancenter.txt"
   }
-}
-
-data "local_file" "mancenter_info" {
-    filename = "${path.module}/mancenter.txt"
-    depends_on = [helm_release.my-release]
-}
-
-output "mancenter_info" {
-  value = data.local_file.mancenter_info.content
 }

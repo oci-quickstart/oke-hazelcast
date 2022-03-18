@@ -8,3 +8,8 @@ data "oci_identity_regions" "home-region" {
     values = [data.oci_identity_tenancy.tenancy.home_region_key]
   }
 }
+
+data "local_file" "mancenter_info" {
+    filename = "${path.module}/mancenter.txt"
+    depends_on = [helm_release.my-release]
+}
